@@ -3,9 +3,12 @@ package com.example.RestSensor.util;
 import com.example.RestSensor.models.Measurement;
 import com.example.RestSensor.services.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+
+@Component
 public class MeasurementValidator implements Validator {
 
     private final SensorService sensorService;

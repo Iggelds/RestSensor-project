@@ -21,14 +21,16 @@ import static com.example.RestSensor.util.ErrorsUtil.returnErrorsToClient;
 
 @RestController
 @RequestMapping("/measurements")
-public class MeasurementController {
+public class MeasurementsController {
 
     private final MeasurementService measurementService;
     private final MeasurementValidator measurementValidator;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public MeasurementController(MeasurementService measurementService, MeasurementValidator measurementValidator, ModelMapper modelMapper) {
+    public MeasurementsController(MeasurementService measurementService,
+                                  MeasurementValidator measurementValidator,
+                                  ModelMapper modelMapper) {
         this.measurementService = measurementService;
         this.measurementValidator = measurementValidator;
         this.modelMapper = modelMapper;
@@ -47,7 +49,7 @@ public class MeasurementController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping()
     public MeasurementsResponse getMeasurements() {
         return new MeasurementsResponse(measurementService.findAll().stream().map(this::convertToMeasurementDTO)
                 .collect(Collectors.toList()));
@@ -75,5 +77,4 @@ public class MeasurementController {
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
 }
